@@ -1,5 +1,92 @@
 # What I learnt today...
 
+## 12/5/2022 - Thu
+### Docker - Resources Management
+
+**Docker containers may use unlimited CPU, memory, and device I/O resources.**
+
+### Memory & CPU
+
+Listing the container resources:
+```bash
+docker stats ch6_mariadb
+```
+
+```bash
+CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT   MEM %     NET I/O       BLOCK I/O         PIDS
+94e69fffaa2a   ch6_mariadb   0.00%     82.61MiB / 256MiB   32.27%    2.54kB / 0B   4.51MB / 45.2MB   19
+```
+
+```bash
+docker container run|create <number><optional unit> where unit = b, k, m or g
+```
+
+for example:
+```bash
+docker container run -d --name ch6_mariadb \        #"container" command is added
+--memory 256m \                             #sets the memory constraint
+--cpu-shares 1024 \                         #relative process weight (integer)
+--cpus  \                                   #CPU cores
+--cpuset-cpus 0 \                           #restrictig to core number (avoid context switching)
+--cap-drop net_raw \
+-e MYSQL_ROOT_PASSWORD=test \               #env. variable provided passwd.
+mariadb:5.5
+```
+Only protects for overconsumption, does not guarantee the given memory for the app.
+
+### Devices
+
+Share the hosts webcam with the container (mount exactly to the same spot)
+```bash
+docker container run -it --rm \
+--device /dev/video0:/dev/video0 \          #/dev/webcam
+ubuntu:16.04 ls -al /dev
+```
+
+### Shared Memory
+If you need to run programs that communicate with shared memory in different
+containers, then you’ll need to join their IPC namespaces with the *--ipc* flag.
+The IPC namespace prevents processes in one container from accessing the mem-
+ory on the host or in other containers.
+
+
+```bash
+docker container run -d --name ch6_ipc_consumer \
+--ipc container:ch6_ipc_producer \              #referencing another containers memory namespace
+dockerinaction/ch6_ipc -consumer
+```
+Sharing memory between containers is
+a safer alternative than sharing memory with the host. Sharing memory with the host
+is possible using the *--ipc=host* option. However, sharing host memory is difficult in
+modern Docker distributions because it contradicts Docker’s secure-by-default pos-
+ture for containers.
+
+### Users
+The root user has almost full privileged access to the state
+of the container. Any processes running as th at user inherit those permissions. It fol-
+lows that if there’s a bug in one of thos e processes, it might damage the container.
+There are ways to limit the damage, but the most effective way to prevent these types
+of issues is not to use the root user.
+
+```bash
+docker container run --rm --entrypoint "" busybox:1.29 whoami
+```
+Running a simple *whoami* to determine the default user (entrypoint which is the images "stratup script" is set no none, to avoid some possible user switching)
+
+```bash
+docker container run --rm \
+--user nobody \                     #set container's run-as user
+busybox:1.29 id
+```
+
+By default, the Docker
+daemon API is accessible via a UNIX domain socket located on the host at /var/run/
+docker.sock. The domain socket is protected with filesystem permissions ensuring that
+only the root user and members of the docker group may send commands or retrieve
+data from the Docker daemon. 
+
+
+
 ## 10/5/2022 - Tue
 ### Docker
 ### Bind fs
