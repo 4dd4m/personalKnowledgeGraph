@@ -85,7 +85,26 @@ docker.sock. The domain socket is protected with filesystem permissions ensuring
 only the root user and members of the docker group may send commands or retrieve
 data from the Docker daemon. 
 
+### Image Creation
 
+In general (manual way):
+* run the container in bash
+* make changes and exit
+* commit the images as a new name
+
+If the images has been built from a script (Dockerfile), we can still make changes to the container, commiting it yields the same result.
+
+```bash
+docker container run --name hw_container \
+ubuntu:latest \
+touch /HelloWorld
+docker container commit hw_container hw_image
+
+docker container rm -vf hw_container
+docker container run --rm \
+hw_image \
+ls -l /HelloWorld
+```
 
 ## 10/5/2022 - Tue
 ### Docker
