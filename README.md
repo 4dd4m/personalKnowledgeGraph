@@ -1,5 +1,113 @@
 # What I learnt today...
 
+## 13/05/2022 - Fri
+
+### Dockerfile
+
+A Dockerfile is a text file that contains inst ructions for building an image. The
+Docker image builder executes the Dockerfile from top to bottom, and the instruc-
+tions can configure or change anything about an image. Building images from
+Dockerfiles makes tasks like adding files to a container from your computer simple
+one-line instructions. Dock erfiles are the most commo n way to describe how to
+build a Docker image.
+
+[Dockerfile Docs]( https://docs.docker.com/engine/reference/builder/)
+
+---
+
+Base image:
+```bash
+FROM debian:buster-20190910
+LABEL maintainer="dia@allingeek.com"
+RUN groupadd -r -g 2200 example && \
+useradd -rM -g example -u 2200 example  #setting user (for this and further images)
+ENV APPROOT="/app" \                    #env variable
+APP="mailer.sh" \                       #env variable
+VERSION="0.6"                           #env variable
+LABEL base.name="Mailer Archetype" \
+base.version="${VERSION}"               #using the env variable
+WORKDIR $APPROOT                        #def workdir in image
+ADD . $APPROOT
+ENTRYPOINT ["/app/mailer.sh"]
+EXPOSE 33333                            #opens TCP port
+# Do not set the default user in the base otherwise
+# implementations will not be able to update the image
+# USER example:example
+```
+
+Another image based on base image:
+```bash
+FROM dockerinaction/mailer-base:0.6     #define base image
+RUN apt-get update && \
+apt-get install -y netcat
+COPY ["./log-impl", "${APPROOT}"]       #copy this file into approot
+RUN chmod a+x ${APPROOT}/${APP} && \    #chmod always after all files are copied
+chown example:example /var/log
+USER example:example                    #switch to user (restrict any root prev.)
+VOLUME ["/var/log"]                     #string array
+CMD ["/var/log/mailer.log"]             #this is the argument passed to base's entrypoint
+```
+
+* Each RUN commands defines a new layer (?)
+* You have no way to specify a bind-mou nt volume or read-only volume at image build time.
+* The CMD command represents an argument list for the entrypoint.
+* The default entrypoint is */bin/sh* (if omitted)
+* *ADD* Fetch remote source files if a URL is specified, Extract the files of any source determined to be an archive file
+
+The ONBUILD instruction defines other instructions to execute if the resulting image is used as a base for another build. For example:
+
+```bash
+ONBUILD COPY [".", "/var/myapp"]
+ONBUILD RUN go build /var/myapp
+```
+
+The ONBUILD commands will run at image building, after the first FROM command. Nice way te auto. resolve some dependency.
+
+
+### Upstream and Downstream
+* Upstream is the images' parent image
+* Downstream refers to the images based on the current image
+
+|Context|Image|Up Or Down?|
+|--|--|--|
+|-|ubuntu:latest| Base Image|
+|based on ubuntu:latest|someImage|UpStream|
+|based on someImage|someImage|UpStream|
+|We are talking about this image ->|**logger**| Active - Point of View|
+|based on logger|someImage|DownStream|
+|based on someImage|someImage|DownStream|
+
+### ARG Command
+* let us use an argument with the building command i.e.:
+
+```bash
+version=0.6; docker image build -t dockerinaction/mailer-base:${version} \
+-f mailer-base.df \
+--build-arg VERSION=${version} \
+.
+```
+
+### Healthchecks
+
+* can be defined in the dockerfile
+
+```bash
+FROM nginx:1.13-alpine
+HEALTHCHECK --interval=5s --retries=2 \
+CMD nc -vz -w 2 localhost 80 || exit 1
+```
+
+* Or as a runtime command. Defining a health check at runtime overrides the health check defined in the image if one exists. 
+
+```bash
+docker container run --name=healthcheck_ex -d \
+--health-cmd='nc -vz -w 2 localhost 80 || exit 1' \
+nginx:1.13-alpine
+```
+
+
+---
+
 ## 12/5/2022 - Thu
 ### Docker - Resources Management
 
@@ -105,6 +213,8 @@ docker container run --rm \
 hw_image \
 ls -l /HelloWorld
 ```
+
+---
 
 ## 10/5/2022 - Tue
 ### Docker
