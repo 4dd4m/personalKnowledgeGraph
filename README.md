@@ -1,7 +1,6 @@
 # What I learnt today...
 
 ## 13/05/2022 - Fri
-
 ### Dockerfile
 
 A Dockerfile is a text file that contains inst ructions for building an image. The
