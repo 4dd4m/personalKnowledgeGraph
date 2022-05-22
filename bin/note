@@ -1,0 +1,50 @@
+# vim: set filetype=sh :
+#!/bin/bash
+
+title(){
+    notes=$(ls -1r 20*)
+    for note in $notes;do
+        title=$(cat $note | head -1)
+        echo $note - ${title/\# /}
+        done
+    }
+
+    parseTags(){
+        #parse all available tags and put in in a tagfile
+        files=$(find . -type f -name "20*")
+        
+        for note in $files;do
+            tagLine=$(grep -e '^        #'  $note)
+            line=${tagLine//        /}
+            lines+=("$line")
+        done
+
+        this=$(printf "%s\n" ${lines[@]} | sort -u)
+        printf "%s\n" $this > tmp/allTags
+    }
+
+
+    getAllTags(){
+        #parse all tags and read the file from tmp/allTags
+        parseTags
+        cat tmp/allTags
+    }
+
+
+    case $1 in
+        tags)
+            getAllTags
+            exit 0;;
+        -n)
+            vim $(date +%Y%m%d%H%M%S).md
+            ;;
+        last)vim $(ls -1r 20* | head -1)
+            ;;
+        title)title
+            ;; 
+        *)
+            echo -e "Usage:\n
+            -n\t\tnew note"
+            ;;
+    esac
+

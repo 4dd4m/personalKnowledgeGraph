@@ -1,0 +1,25 @@
+# vim: set filetype=sh :
+#!/bin/bash
+
+#vim filter
+#usage: !wrap typeOfSyntax
+#for instance calling !wrap bash on this:
+#
+#FROM ubuntu:latest
+#ARG GREET=GeeksForGeeks
+#RUN echo "Hey there! Welcome to $GREET" > greeting.txt
+#CMD cat greeting.txt
+#
+#Gives you this:
+#```bash
+#FROM ubuntu:latest
+#ARG GREET=GeeksForGeeks
+#RUN echo "Hey there! Welcome to $GREET" > greeting.txt
+#CMD cat greeting.txt
+#```
+
+echo \`\`\`$1
+while read -r line;do
+    echo $line
+done
+echo \`\`\`
