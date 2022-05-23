@@ -1,6 +1,5 @@
 # vim: set filetype=sh :
 #!/bin/bash
-
 title(){
     notes=$(ls -1r 20*)
     for note in $notes;do
@@ -19,15 +18,25 @@ title(){
             lines+=("$line")
         done
 
-        this=$(printf "%s\n" ${lines[@]} | sort -u)
-        printf "%s\n" $this > tmp/allTags
+        printf "%s\n" ${lines[@]} | sort -u > tmp/allTags
     }
 
 
     getAllTags(){
         #parse all tags and read the file from tmp/allTags
         parseTags
+        echo -e "Available Tags\n------------"
         cat tmp/allTags
+    }
+
+    grepTags(){
+        result=$(grep $1 tmp/allTags)
+        #if [[ ! -n "$result" ]];then
+        #    echo "No tags"
+        #else
+        #    echo $result
+        #fi
+        [ -n "$result" ] && echo $result || echo "No tags"
     }
 
 
@@ -35,7 +44,10 @@ title(){
         tags)
             getAllTags
             exit 0;;
-        -n)
+        searchTag)
+            grepTags $2
+            exit 0;;
+        new)
             vim $(date +%Y%m%d%H%M%S).md
             ;;
         last)vim $(ls -1r 20* | head -1)
@@ -43,8 +55,11 @@ title(){
         title)title
             ;; 
         *)
-            echo -e "Usage:\n
-            -n\t\tnew note"
-            ;;
+            echo -e "Usage:
+    new\t\t\tnew note
+    last\t\tedit last note
+    title\t\tlist all notes title
+    searchTag\t\tsearch tags
+    tags\t\tbuild tagfile";;
     esac
 
