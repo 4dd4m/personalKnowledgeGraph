@@ -1,4 +1,3 @@
-# vim: set filetype=sh :
 #!/bin/bash
 
 #vim filter
@@ -18,8 +17,10 @@
 #CMD cat greeting.txt
 #```
 
-echo \`\`\`$1
+echo \`\`\`"$1"
 while read -r line;do
-    echo $line
+    echo "$line"
 done
 echo \`\`\`
+
+# vim: set filetype=sh :

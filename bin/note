@@ -1,10 +1,9 @@
-# vim: set filetype=sh :
 #!/bin/bash
 title(){
     notes=$(ls -1r 20*)
     for note in $notes;do
-        title=$(cat $note | head -1)
-        echo $note - ${title/\# /}
+        title=$(head -1 "$note")
+        echo "$note" - "${title/\# /}"
         done
     }
 
@@ -13,7 +12,7 @@ title(){
         files=$(find . -type f -name "20*")
         
         for note in $files;do
-            tagLine=$(grep -e '^        #'  $note)
+            tagLine=$(grep -e '^        #'  "$note")
             line=${tagLine//        /}
             lines+=("$line")
         done
@@ -30,13 +29,8 @@ title(){
     }
 
     grepTags(){
-        result=$(grep $1 tmp/allTags)
-        #if [[ ! -n "$result" ]];then
-        #    echo "No tags"
-        #else
-        #    echo $result
-        #fi
-        [ -n "$result" ] && echo $result || echo "No tags"
+        result=$(grep "$1" tmp/allTags)
+        [ -n "$result" ] && echo "$result" || echo "No tags"
     }
 
 
@@ -45,12 +39,12 @@ title(){
             getAllTags
             exit 0;;
         searchTag)
-            grepTags $2
+            grepTags "$2"
             exit 0;;
         new)
-            vim $(date +%Y%m%d%H%M%S).md
+            vim "$(date +%Y%m%d%H%M%S)".md
             ;;
-        last)vim $(ls -1r 20* | head -1)
+        last)vim "$(ls -1r 20* | head -1)"
             ;;
         title)title
             ;; 
@@ -63,3 +57,4 @@ title(){
     tags\t\tbuild tagfile";;
     esac
 
+# vim: set filetype=sh :
