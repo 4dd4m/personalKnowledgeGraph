@@ -19,8 +19,10 @@ Github provides a powerful search engine (plus it has a nice "pages" feature) or
 * `./bin/note title` list all note title
 * `./bin/note tags` list all tags in the notes
 * `./bin/note searchTag tag` search a tag in all available tags
+* `./bin/wrap` is a vim filter wrap the source code in vim
+* `./bin/isosec` prints out the current time in isosec format
 
-`note` has to be in the `path`.
+`./bin` has to be in the `path`.
 
 ## Todo
 * `./bin/note suggest tagName` a bash filter which gives a link to a corresponding notes tagged with tagName `[note.md]`
