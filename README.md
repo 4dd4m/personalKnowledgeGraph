@@ -3,6 +3,7 @@
 This is my modified take on [zettlekasten](https://duckduckgo.com/?q=zettlekasten&t=vivaldi&ia=web). I put my things here for reviewing (and searching).
 
 [Index of all Notes](index.md)
+
 [Index of all Tags](indexOfTags.md)
 
 The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
