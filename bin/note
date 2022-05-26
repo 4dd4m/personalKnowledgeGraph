@@ -1,60 +1,71 @@
 #!/bin/bash
 title(){
-    notes=$(ls -1r 20*)
-    for note in $notes;do
-        title=$(head -1 "$note")
-        echo "$note" - "${title/\# /}"
-        done
-    }
+    notes=$(find . -maxdepth 1 -name "[0-9]*.md" -type f)
+    if [[ -n "$notes" ]];then
+        echo "" > tmpf
+        for note in $notes;do
+            title=$(head -1 "$note")
+            echo "* [${title/\# /}](${note/\.\//})" >> tmpf
+                echo "${note/\.\//} - ${title/\# /}" 
+            done
+            echo "# Index of notes" > index.md
+            cat tmpf | sort >> index.md
+            echo -e "\n[Readme](README.md)" >>index.md
+            rm tmpf
+    fi
+}
 
-    parseTags(){
-        #parse all available tags and put in in a tagfile
-        files=$(find . -type f -name "20*")
-        
+
+parseTags(){
+    #parse all available tags and put in in a tagfile
+    files=$(find . -type f -name "20*")
+    if [[ -n "$files" ]];then
+        echo -e "# Index of Tags\n" > indexOfTags.md
         for note in $files;do
             tagLine=$(grep -e '^        #'  "$note")
             line=${tagLine//        /}
-            lines+=("$line")
+            lines+=("${line//\#/}")
         done
 
-        printf "%s\n" ${lines[@]} | sort -u > tmp/allTags
-    }
+        printf "[[%s]]\n" ${lines[@]} | sort -u > indexOfTags.md
+        printf "%s\n" ${lines[@]} | sort -u 
+        echo -e "\n[[README.md|back]]" >> indexOfTags.md
+    fi
+}
 
 
-    getAllTags(){
-        #parse all tags and read the file from tmp/allTags
-        parseTags
-        echo -e "Available Tags\n------------"
-        cat tmp/allTags
-    }
+getAllTags(){
+    #parse all tags and read the file from tmp/allTags
+    parseTags
+}
 
-    grepTags(){
-        result=$(grep "$1" tmp/allTags)
-        [ -n "$result" ] && echo "$result" || echo "No tags"
-    }
+grepTags(){
+    result=$(grep "$1" tmp/allTags)
+    [ -n "$result" ] && echo "$result" || echo "No tags"
+}
 
 
-    case $1 in
-        tags)
-            getAllTags
-            exit 0;;
-        searchTag)
-            grepTags "$2"
-            exit 0;;
-        new)
-            vim "$(date +%Y%m%d%H%M%S)".md
-            ;;
-        last)vim "$(ls -1r 20* | head -1)"
-            ;;
-        title)title
-            ;; 
-        *)
-            echo -e "Usage:
-    new\t\t\tnew note
-    last\t\tedit last note
-    title\t\tlist all notes title
-    searchTag\t\tsearch tags
-    tags\t\tbuild tagfile";;
-    esac
+case $1 in
+    tags)
+        getAllTags
+        exit 0;;
+    searchTag)
+        grepTags "$2"
+        exit 0;;
+    new)
+        vim "$(date +%Y%m%d%H%M%S)".md
+        ;;
+    last)vim "$(ls -1r 20* | head -1)"
+        ;;
+    title)title
+        ;; 
+    *)
+        echo -e "Usage:
+        new\t\t\tnew note
+        last\t\tedit last note
+        title\t\tlist all notes title
+        searchTag\t\tsearch tags
+        tags\t\tbuild tagfile";;
+esac
 
 # vim: set filetype=sh :

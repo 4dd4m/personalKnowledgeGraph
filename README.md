@@ -2,6 +2,9 @@
 
 This is my modified take on [zettlekasten](https://duckduckgo.com/?q=zettlekasten&t=vivaldi&ia=web). I put my things here for reviewing (and searching).
 
+[[index.md|Index of all Notes]]
+[[indexOfTags.md|Index of all Tags]]
+
 The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
 
 ## Learning Goals
