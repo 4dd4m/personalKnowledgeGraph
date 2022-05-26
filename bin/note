@@ -27,7 +27,7 @@ parseTags(){
             lines+=("${line//\#/}")
         done
 
-        printf "[[%s]]\n" ${lines[@]} | sort -u > indexOfTags.md
+        printf "[%s]()\n" ${lines[@]} ${lines[@]} | sort -u > indexOfTags.md
         printf "%s\n" ${lines[@]} | sort -u 
         echo -e "\n[[README.md|back]]" >> indexOfTags.md
     fi
