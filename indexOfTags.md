@@ -36,11 +36,14 @@
 [vue]()
 [vue-$event]()
 [vue-computed-properties]()
+[vue-computed-property]()
 [vue-event-modifier]()
 [vue-event-overload]()
 [vue-interpolation]()
 [vue-method-properties]()
+[vue-method-property]()
 [vue-this]()
 [vue-v-html]()
+[vue-watcher]()
 
 [[README.md|back]]

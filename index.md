@@ -17,8 +17,11 @@
 * [Git delete commits and reset head](20220525042940.md)
 * [Hosting multiple sites with docker containers](20220524014707.md)
 * [SKILSTAK Beginner Boost 2022 - Week 3](20220523115457.md)
+* [v-bind & v-on shorthands](20220526142823.md)
 * [V-html](20220526084206.md)
 * [v-on](20220526085637.md)
+* [Vue Methods vs Computed vs Watch](20220526142237.md)
 * [Vue on a single page](20220526074030.md)
+* [Vue Watchers](20220526140722.md)
 
 [Readme](README.md)
