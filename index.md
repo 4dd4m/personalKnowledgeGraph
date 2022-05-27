@@ -1,5 +1,4 @@
 # Index of notes
-
 * [Bash Ternary Operator](20220523193742.md)
 * [Computed Propteries VS Methods](20220526122649.md)
 * [Difference Between Processes and Threads](20220522044206.md)
@@ -18,10 +17,17 @@
 * [Hosting multiple sites with docker containers](20220524014707.md)
 * [SKILSTAK Beginner Boost 2022 - Week 3](20220523115457.md)
 * [v-bind & v-on shorthands](20220526142823.md)
-* [V-html](20220526084206.md)
+* [v-for](20220527153801.md)
+* [v-html](20220526084206.md)
+* [v-if v-else](20220527133628.md)
 * [v-on](20220526085637.md)
+* [v-show](20220527152115.md)
+* [Vue Basic Style Syntax](20220527121824.md)
+* [Vue lifecycle hooks](20220527233710.md)
 * [Vue Methods vs Computed vs Watch](20220526142237.md)
+* [Vue Monster Project](20220528000833.md)
 * [Vue on a single page](20220526074030.md)
+* [vue ref command](20220527235949.md)
 * [Vue Watchers](20220526140722.md)
 
 [Readme](README.md)

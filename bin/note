@@ -2,16 +2,16 @@
 title(){
     notes=$(find . -maxdepth 1 -name "[0-9]*.md" -type f)
     if [[ -n "$notes" ]];then
-        echo "" > tmpf
+        touch tmpf
         for note in $notes;do
             title=$(head -1 "$note")
             echo "* [${title/\# /}](${note/\.\//})" >> tmpf
-                echo "${note/\.\//} - ${title/\# /}" 
             done
-            echo "# Index of notes" > index.md
-            cat tmpf | sort >> index.md
-            echo -e "\n[Readme](README.md)" >>index.md
-            rm tmpf
+                        echo "# Index of notes" > index.md
+                        cat tmpf | sort >> index.md
+                        echo -e "\n[Readme](README.md)" >>index.md
+                        rm tmpf
+        cat index.md
     fi
 }
 
@@ -25,11 +25,11 @@ parseTags(){
             tagLine=$(grep -e '^        #'  "$note")
             line=${tagLine//        /}
             lines+=("${line//\#/}")
-        done
+            done
 
-        printf "[%s]()\n" ${lines[@]} ${lines[@]} | sort -u > indexOfTags.md
-        printf "%s\n" ${lines[@]} | sort -u 
-        echo -e "\n[[README.md|back]]" >> indexOfTags.md
+            printf "[%s]()\n" ${lines[@]} ${lines[@]} | sort -u > indexOfTags.md
+            printf "%s\n" ${lines[@]} | sort -u 
+            echo -e "\n[[README.md|back]]" >> indexOfTags.md
     fi
 }
 

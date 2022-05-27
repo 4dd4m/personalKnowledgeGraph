@@ -1,3 +1,19 @@
 #!/bin/bash
 
-date +%Y%m%d%H%M%S
+DATE=$(date +%Y%m%d%H%M%S)
+if  [[ "$1" = "-h" ]];then
+    echo -e "Usage:
+    -l          insert a markdown link
+    -h          show this help
+    no args     inserts the isosec"
+    exit 0
+fi
+
+if  [[ "$1" = "-l" ]];then
+    echo "[$DATE]($DATE.md)"
+else
+    echo "$DATE" 
+fi
+exit 0
+
+
