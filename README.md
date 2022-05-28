@@ -10,9 +10,15 @@ The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
 
 ## Learning Goals
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/65) [Docker in action, 2nd Edition](https://www.manning.com/books/docker-in-action-second-edition)
+* ![ 447 ](https://us-central1-progress-markdown.cloudfunctions.net/progress/60) [The Linux Command Line and Shell Scripting Bible, 3rd Edition](https://www.amazon.co.uk/Linux-Command-Shell-Scripting-Bible/dp/111898384X)
 * ![  ](https://us-central1-progress-markdown.cloudfunctions.net/progress/25) [Vue - The Complete Guide @ udemy.com ](https://www.udemy.com/course/vuejs-2-the-complete-guide)
-* ![ 447/709 ](https://us-central1-progress-markdown.cloudfunctions.net/proress/60) [The Linux Command Line and Shell Scripting Bible, 3rd Edition](https://www.amazon.co.uk/Linux-Command-Shell-Scripting-Bible/dp/111898384X)
+
+## Future Learning
+* ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/50) [C Programming For Beginners - Master the C Language](https://www.udemy.com/course/c-programming-for-beginners-/learn)
+* ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/30) [The Complete JavaScript Course 2022: From Zero to Expert!  ](https://www.udemy.com/course/the-complete-javascript-course/)
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/20) [Laravel: Up & Running](https://laravelupandrunning.com)
+* ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) [Mastering TypeScript - Fourth Edition](https://www.packtpub.com/product/mastering-typescript-fourth-edition/9781800564732)
+* ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/5) [Advanced C Programming Course](https://www.udemy.com/course-dashboard-redirect/?course_id=2800976)
 
 ## How to search
 Github provides a powerful search engine (plus it has a nice "pages" feature) or just use simple `grep`, `:vimgrep` from the terminal.
