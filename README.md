@@ -10,8 +10,8 @@ The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
 
 ## Learning Goals
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/65) [Docker in action, 2nd Edition](https://www.manning.com/books/docker-in-action-second-edition)
-* ![  ](https://us-central1-progress-markdown.cloudfunctions.net/progress/20) [Vue - The Complete Guide @ udemy.com ](https://www.udemy.com/course/vuejs-2-the-complete-guide)
-* ![447/709](https://us-central1-progress-markdown.cloudfunctions.net/proress/60) [The Linux Command Line and Shell Scripting Bible, 3rd Edition](https://www.amazon.co.uk/Linux-Command-Shell-Scripting-Bible/dp/111898384X)
+* ![  ](https://us-central1-progress-markdown.cloudfunctions.net/progress/25) [Vue - The Complete Guide @ udemy.com ](https://www.udemy.com/course/vuejs-2-the-complete-guide)
+* ![ 447/709 ](https://us-central1-progress-markdown.cloudfunctions.net/proress/60) [The Linux Command Line and Shell Scripting Bible, 3rd Edition](https://www.amazon.co.uk/Linux-Command-Shell-Scripting-Bible/dp/111898384X)
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/20) [Laravel: Up & Running](https://laravelupandrunning.com)
 
 ## How to search
