@@ -5,13 +5,17 @@ title(){
         touch tmpf
         for note in $notes;do
             title=$(head -1 "$note")
-            echo "* [${title/\# /}](${note/\.\//})" >> tmpf
+            echo "* [${note/\.\//}](${note/\.\//})" >> tmpf
             done
-                        echo "# Index of notes" > index.md
-                        cat tmpf | sort >> index.md
-                        echo -e "\n[Readme](README.md)" >>index.md
+                        echo "---" > indexOfNotes.md
+                        echo "title: IndexOfNotes" >> indexOfNotes.md
+                        echo "date: $(date "+%Y-%m-%m %T")" >> indexOfNotes.md
+                        echo "draft: true" >> indexOfNotes.md
+                        echo "---" >> indexOfNotes.md
+                        echo " " >> indexOfNotes.md
+                        cat tmpf | sort >> indexOfNotes.md
                         rm tmpf
-        cat index.md
+        cat indexOfNotes.md
     fi
 }
 
@@ -20,16 +24,22 @@ parseTags(){
     #parse all available tags and put in in a tagfile
     files=$(find . -type f -name "20*")
     if [[ -n "$files" ]];then
-        echo -e "# Index of Tags\n" > indexOfTags.md
+        echo "---" > indexOfTags.md
+        echo "title: Index of Tags" >> indexOfTags.md
+        echo "draft: true" >> indexOfTags.md
+        echo "---" >> indexOfTags.md
+
         for note in $files;do
-            tagLine=$(grep -e '^        #'  "$note")
-            line=${tagLine//        /}
-            lines+=("${line//\#/}")
+            tagLine=$(grep -e 'tags: '  "$note")
+            line=${tagLine/tags: \[/}
+            line=${line/\]/}
+            line=${line//, / }
+            lines+=($line)
             done
 
-            printf "[%s]()\n" ${lines[@]} ${lines[@]} | sort -u > indexOfTags.md
-            printf "%s\n" ${lines[@]} | sort -u 
+            printf "[%s]()\n" ${lines[@]} ${lines[@]} | sort -u >> indexOfTags.md
             echo -e "\n[[README.md|back]]" >> indexOfTags.md
+            cat indexOfTags.md
     fi
 }
 

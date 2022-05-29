@@ -1,4 +1,7 @@
-# Personal Knowledge Graph
+---
+draft: true
+---
+[#](#) Personal Knowledge Graph
 
 This is my modified take on [zettlekasten](https://duckduckgo.com/?q=zettlekasten&t=vivaldi&ia=web). I put my things here for reviewing (and searching).
 
