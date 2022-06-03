@@ -1,4 +1,6 @@
 #!/bin/bash
+olddir=$(pwd)
+notesdir=/home/adam/home/content/en/personalKnowledgeGraph
 title(){
     notes=$(find . -maxdepth 1 -name "[0-9]*.md" -type f)
     if [[ -n "$notes" ]];then
@@ -54,6 +56,14 @@ grepTags(){
     [ -n "$result" ] && echo "$result" || echo "No tags"
 }
 
+newNote(){
+    filename="$(date +%Y%m%d%H%M%S).md"
+    touch $filename
+    echo -e "---\nTitle: \ndate: $(date -u +"%Y-%m-%dT%H:%M:%SZ")\ndraft: true\ntags: []\ncategories: []\nsummary: \n---" >> $filename
+    vim $filename
+}
+
+cd $notesdir
 
 case $1 in
     tags)
@@ -63,7 +73,7 @@ case $1 in
         grepTags "$2"
         exit 0;;
     new)
-        vim "$(date +%Y%m%d%H%M%S)".md
+        newNote
         ;;
     last)vim "$(ls -1r 20* | head -1)"
         ;;
@@ -77,5 +87,7 @@ case $1 in
         searchTag\t\tsearch tags
         tags\t\tbuild tagfile";;
 esac
+
+cd $olddir
 
 # vim: set filetype=sh :

@@ -3,7 +3,7 @@ draft: true
 ---
 [#](#) Personal Knowledge Graph
 
-This is my modified take on [zettlekasten](https://duckduckgo.com/?q=zettlekasten&t=vivaldi&ia=web). I put my things here for reviewing (and searching). 
+[This](https://adamtorok.xyz/) is my modified take on [zettlekasten](https://duckduckgo.com/?q=zettlekasten&t=vivaldi&ia=web) note taking. I put my things here for reviewing (and searching). 
 
 
 The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
@@ -11,7 +11,7 @@ The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
 ## Learning Goals
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/65) [Docker in action, 2nd Edition](https://www.manning.com/books/docker-in-action-second-edition)
 * ![ 447 ](https://us-central1-progress-markdown.cloudfunctions.net/progress/60) [The Linux Command Line and Shell Scripting Bible, 3rd Edition](https://www.amazon.co.uk/Linux-Command-Shell-Scripting-Bible/dp/111898384X)
-* ![  ](https://us-central1-progress-markdown.cloudfunctions.net/progress/25) [Vue - The Complete Guide @ udemy.com ](https://www.udemy.com/course/vuejs-2-the-complete-guide)
+* ![  ](https://us-central1-progress-markdown.cloudfunctions.net/progress/35) [Vue - The Complete Guide @ udemy.com ](https://www.udemy.com/course/vuejs-2-the-complete-guide)
 
 ## Future Learning
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/50) [C Programming For Beginners - Master the C Language](https://www.udemy.com/course/c-programming-for-beginners-/learn)
@@ -21,7 +21,7 @@ The structure, idea, the "isosec" format etc. originated from rwxrob[^1]
 * ![ ](https://us-central1-progress-markdown.cloudfunctions.net/progress/5) [Advanced C Programming Course](https://www.udemy.com/course-dashboard-redirect/?course_id=2800976)
 
 ## How to search
-Github provides a powerful search engine (plus it has a nice "pages" feature) or just use simple `grep`, `:vimgrep` from the terminal.
+Github provides a powerful search engine, as a fallback I just use a simple `grep`, `:vimgrep` from the terminal.
 
 ## Commands
 * `./bin/note new` add a new note
